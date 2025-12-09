@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miles Franck | Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating bubbles (Kept exactly as is) -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Navigation (Kept exactly as is) -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Miles</a>
+            <ul class="nav-links">
+                <li><a href="../htmlpages/homepage.html">Home</a></li>
+                <li><a href="https://github.com/MilesF25" target="_blank">Github</a></li>
+                <li><a href="../htmlpages/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Navigation</span>
+                    <div class="dropdown-menu">
+                        <a href="experience_home_page/Personal_Projects.html">Projects</a>
+                        <a href="..\assets\MilesFranckresume.pdf" target="_blank">Resume</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- MAIN HUB LAYOUT -->
+    <!-- I replaced "hero" with "hub-grid" to allow for multiple boxes -->
+    <main class="hub-grid">
+
+        <!-- Box 1: Introduction (Largest Box) -->
+        <div class="hub-card intro-tile">
+            <div class="greeting">Hi there, I'm</div>
+            <h1 class="hero-name">Miles Franck</h1>
+            <div class="hero-roles">
+                <span class="role">College Grad</span>
+                <span class="role">Cyber Security</span>
+                <span class="role">Explorer</span>
+            </div>
+            <p class="hero-description">
+                I’m currently exploring web development and network security.
+                Looking for opportunities to grow my skills and contribute in an entry-level role.
+            </p>
+        </div>
+
+        <!-- Box 2: Projects Link -->
+        <a href=".\experience.html" class="hub-card action-tile">
+            <h3>View My Work</h3>
+            <p>Check out my latest web dev and security projects.</p>
+
+        </a>
+
+        <!-- Box 3: Resume Link -->
+        <a href="..\assets\MilesFranckresume.pdf" target="_blank" class="hub-card action-tile">
+            <h3>Resume</h3>
+            <p>Download my CV (PDF)</p>
+
+        </a>
+
+        <!-- Box 4: Contact/Github -->
+        <div class="hub-card social-tile">
+            <h3>Connect</h3>
+            <div class="social-links">
+                <a href="https://github.com/MilesF25" target="_blank">GitHub Profile</a>
+                <a href="../htmlpages/contact.html">Contact Me</a>
+            </div>
+        </div>
+
+        <!-- Box 5: About me -->
+        <div class="hub-card action-tile">
+            <h3>Learn About Me</h3>
+            <p>Click here for a fun surprise.</p>
+
+            <img src="byte wink.png" class="byteimg" alt="None">
+        </div>
+        <!-- Box 6: Certificates-->
+        <a href=".\certificates.html" class="hub-card action-tile">
+            <h3>My Certificates</h3>
+            <p>View my completed courses and certifications.</p>
+            <div class="arrow-icon">📜</div>
+        </a>
+
+    </main>
+
+</body>
+
+</html>

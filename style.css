@@ -1,0 +1,380 @@
+/* --- GLOBAL RESET & BASICS (Kept yours) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: white;
+    /* Added this to ensure text is white by default */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- BUBBLES ANIMATION (Kept yours) --- */
+.bubble {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.1;
+    pointer-events: none;
+    animation: float 20s infinite linear;
+}
+
+.bubble:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    left: 10%;
+    background: rgba(255, 255, 255, 0.3);
+    animation-delay: -5s;
+}
+
+.bubble:nth-child(2) {
+    width: 120px;
+    height: 120px;
+    left: 70%;
+    background: rgba(0, 200, 255, 0.2);
+    animation-delay: -1s;
+}
+
+.bubble:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    left: 40%;
+    background: rgba(255, 255, 255, 0.4);
+    animation-delay: -8s;
+}
+
+.bubble:nth-child(4) {
+    width: 100px;
+    height: 100px;
+    left: 20%;
+    background: rgba(200, 100, 255, 0.25);
+    animation-delay: -3s;
+}
+
+.bubble:nth-child(5) {
+    width: 50px;
+    height: 50px;
+    left: 80%;
+    background: rgba(255, 255, 100, 0.3);
+    animation-delay: -5s;
+}
+
+.bubble:nth-child(6) {
+    width: 140px;
+    height: 140px;
+    left: 55%;
+    background: rgba(0, 255, 150, 0.2);
+    animation-delay: -2s;
+}
+
+.bubble:nth-child(7) {
+    width: 160px;
+    height: 170px;
+    right: 55%;
+    background: rgba(0, 255, 150, 0.2);
+    animation-delay: -1s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+    }
+}
+
+/* --- NAVIGATION (Kept yours) --- */
+nav {
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    position: sticky;
+    /* Make sure nav stays at top */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    cursor: default;
+    user-select: none;
+}
+
+.nav-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a,
+.dropdown-toggle {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-links a:hover,
+.dropdown-toggle:hover {
+    color: white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-toggle::after {
+    content: '▼';
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-top: 0.25rem;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
+    margin: 0.25rem;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+
+/* --- NEW HUB LAYOUT (Bento Grid) --- */
+
+.hub-grid {
+    display: grid;
+    /* This creates 3 columns on big screens */
+    grid-template-columns: repeat(3, 1fr);
+    /* This sets the height of the rows */
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Glass Card Style (Replaces your old .hero-card) */
+.hub-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 2rem;
+    color: white;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Hover effects for the cards */
+a.hub-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+}
+
+/* --- TILE SPECIFICS --- */
+
+/* 1. Introduction Tile (Spans 2 columns) */
+.intro-tile {
+    grid-column: span 3;
+    /* Full width on mobile default, overridden in media query */
+    text-align: left;
+    padding: 3rem;
+}
+
+@media (min-width: 768px) {
+    .intro-tile {
+        grid-column: span 2;
+        /* Takes up 2/3rds of the top row */
+        grid-row: span 2;
+        /* Takes up 2 rows height */
+    }
+}
+
+.greeting {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-name {
+    font-size: 3rem;
+    font-weight: 300;
+    margin: 0.5rem 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-roles {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.role {
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* 2. Action Tiles (Projects & Resume) */
+.action-tile h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.action-tile p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.arrow-icon {
+    font-size: 2rem;
+    align-self: flex-end;
+}
+
+/* 3. Social Tile */
+.social-tile .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.social-links a {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.8rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.social-links a:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hub-grid {
+        grid-template-columns: 1fr;
+        /* Stack everything in 1 column */
+        margin-top: 2rem;
+    }
+
+    .intro-tile {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+
+/* image */
+/* img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    object-fit: fill;
+} */
+
+.byteimg {
+    height: 3.3em;
+    /* Adjust height relative to the surrounding font size */
+    width: 3.3em;
+    /* Keep width consistent with height for square emojis */
+    vertical-align: text-bottom;
+    /* Align with the bottom of the text line */
+    margin: 0 0.05em 0 0.1em;
+    /* Add slight margins for spacing */
+    /* Optional: Add border-radius for rounded appearance */
+    /* border-radius: 50%; */
+    /* Optional: Apply filters for specific visual effects */
+    /* filter: grayscale(100%); */
+}
