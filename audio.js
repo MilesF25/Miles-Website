@@ -2,7 +2,7 @@
 const songs = [
     "assets/audio/Story4.mp3",
     "assets/audio/web.mp3",
-    "assets/audio/thridsong.mp3"
+    "assets/audio/thirdsong.mp3"
 
 
 ];
