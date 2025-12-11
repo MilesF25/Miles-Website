@@ -37,3 +37,12 @@ button.addEventListener('click', function () {
         audio.play();
     }
 });
+
+audio.addEventListener("ended", function () {
+    currentSongIndex++;
+    if (currentSongIndex >= playlist.length) {
+        currentSongIndex = 0;
+    }
+    audio.src = playlist[currentSongIndex];
+    audio.play();
+});
