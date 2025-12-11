@@ -1,7 +1,7 @@
 // List of audio files
 const songs = [
-    "index/assets/audio/Story Theme 4 .mp3",
-    "index/assets/audio/web.mp3",
+    "assets/audio/Story_Theme_4.mp3",
+    "assets/audio/web.mp3",
 
 
 ];
