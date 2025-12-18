@@ -871,3 +871,259 @@ main {
         font-size: 1.6rem;
     }
 }
+
+/* ========================================
+   BLOG HUB PAGE STYLES
+   ======================================== */
+
+/* Blog Hub Container */
+.blog-hub-container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.blog-hub-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.blog-hub-header h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.blog-hub-header p {
+    font-size: 1.2rem;
+    opacity: 0.85;
+}
+
+/* Blog Grid - 3 Columns */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Blog Card */
+.blog-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.blog-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.blog-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.blog-card p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .blog-hub-header h1 {
+        font-size: 2rem;
+    }
+
+    .blog-card {
+        padding: 1.5rem;
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ========================================
+   BLOG LIST PAGE STYLES
+   ======================================== */
+
+.blog-list-container {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.blog-list-header {
+    margin-bottom: 3rem;
+}
+
+.blog-list-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-list-header p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.post-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    padding: 2rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.post-card:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateX(8px);
+}
+
+.post-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.post-preview {
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .blog-list-header h1 {
+        font-size: 2rem;
+    }
+
+    .post-card {
+        padding: 1.5rem;
+    }
+}
+
+/* ========================================
+   BLOG LIST PAGE STYLES
+   ======================================== */
+
+.blog-list-container {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.blog-list-header {
+    margin-bottom: 3rem;
+}
+
+.blog-list-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-list-header p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.post-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    padding: 2rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.post-card:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateX(8px);
+}
+
+.post-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.post-preview {
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .blog-list-header h1 {
+        font-size: 2rem;
+    }
+
+    .post-card {
+        padding: 1.5rem;
+    }
+}
