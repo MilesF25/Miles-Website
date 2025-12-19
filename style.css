@@ -1127,3 +1127,136 @@ main {
         padding: 1.5rem;
     }
 }
+
+
+/* ========================================
+   BLOG POST PAGE STYLES
+   ======================================== */
+
+.blog-post-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Post Header */
+.post-header {
+    margin-bottom: 3rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+.post-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.post-info {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* Post Content */
+.post-content {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 3rem;
+    color: white;
+    line-height: 1.8;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.post-content h2 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.post-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Code Blocks */
+.post-content pre {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.post-content code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Inline code */
+.post-content p code {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Post Footer */
+.post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        padding: 2rem;
+    }
+
+    .post-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .post-content h3 {
+        font-size: 1.3rem;
+    }
+}

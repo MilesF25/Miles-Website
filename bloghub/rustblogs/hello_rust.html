@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miles Franck | Hub</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
 
-    <!-- Floating bubbles (Kept exactly as is) -->
+
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
@@ -18,7 +18,7 @@
     <div class="bubble"></div>
     <div class="bubble"></div>
 
-    <!-- Navigation (Kept exactly as is) -->
+
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">Miles</a>
@@ -36,3 +36,191 @@
             </ul>
         </div>
     </nav>
+    <!-- Blog Post Container -->
+    <article class="blog-post-container">
+        <!-- Post Header -->
+        <header class="post-header">
+            <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
+            <h1 class="post-title">Learning Rust: My Guessing Game Journey</h1>
+            <div class="post-info">
+                <span>Dec 19, 2024</span>
+                <span>•</span>
+
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <p>In my journey to learn Rust, I decided to follow <a href="https://doc.rust-lang.org/book/title-page.html"
+                    target="_blank">"The Book"</a>. It's a comprehensive guide that teaches you everything you need to
+                know about the language. I had some experience with Rust a few years ago, but life got busy and I
+                stopped working with it. Naturally, my skills atrophied, so instead of trying to dive back in from the
+                deep end, I decided to start from the very beginning.</p>
+
+            <h2>Getting Started</h2>
+            <p>To get my feet wet, I went through chapters 1-4.2. I probably should've done 4.3, but I felt like it was
+                leaving the scope of what I wanted to do. In chapter 2, the book introduces you to a simple guessing
+                game. I followed along for a little bit before I went off to do my own version of it.</p>
+
+            <h2>The Basic Setup</h2>
+            <p>My program starts off the same as the book's:</p>
+
+            <pre><code>fn guess() -> bool {
+    println!("Guess the number, enter a num: ");
+    
+    // syntax: :: is a function of the string type 
+    // and new makes a new empty string
+    let mut user_input = String::new();
+    
+    // this is to generate a random number
+    let mut rng = rand::rng();</code></pre>
+
+            <p>A simple start - it just asks the user to enter a number and then generates one.</p>
+
+            <h2>Handling User Input</h2>
+            <p>Now for only 3 lines of code, there are a ton of concepts to understand:</p>
+
+            <pre><code>// io::stdin is like an import in Python
+// this module handles input for terminal
+io::stdin()
+    // read_line takes what is typed in the terminal 
+    // and stores it in the variable
+    // &mut: my understanding is that it is a reference 
+    // to the variable
+    // the & allows you to reference a variable without 
+    // making a new copy
+    // the mut allows us to make changes to the variable
+    // normally, references are immutable
+    // read_line returns a Result type, which is an enum 
+    // that can be either Ok or Err
+    // if result is Ok it will continue and return the value
+    // else, you get an error
+    .read_line(&mut user_input)
+    // like try and except, this handles possible errors
+    .expect("Failed to read line");</code></pre>
+
+            <h3>Understanding &mut</h3>
+            <p>The most confusing part to me was <code>&mut</code>. It took a while to understand it again, but it
+                finally clicked. Only use <code>&mut</code> when you are giving a function permission to change a
+                variable. The first time it's used, I was changing the empty string to be what the user was entering.
+            </p>
+
+            <h3>The Result Type</h3>
+            <p>The second confusing part was the <code>read_line()</code> function, more specifically, what it returns.
+                <code>read_line()</code> returns a Result that is either Ok or Err. Ok means everything is good, Err
+                means something went wrong. I think what tripped me up the most is how it looks:
+                <code>Result&lt;usize, Error&gt;</code>. My Python brain is used to seeing true or false, so this was
+                really hard to grasp.
+            </p>
+
+            <h2>Parsing and Validation</h2>
+            <p>Next, I needed to clean up the input and validate it:</p>
+
+            <pre><code>// from stack overflow, this removes any whitespace 
+// from the string
+// retain will make sure the original var is kept 
+// and not make a new one
+user_input.retain(|c| !c.is_whitespace());</code></pre>
+
+            <p>This code removes any whitespace from the string. The reason I included this is because it's just good
+                code practice.</p>
+
+            <pre><code>// parse will check if the string is a number
+// parse will always return a Result (enum)
+// if the result is Ok, it will give me the number
+// if it's not, I get an error
+
+// what I learned is that you should use unwrap 
+// if you are generally sure you won't get an error
+// This is bad for this situation because what if 
+// the user enters "cat"? My program will crash
+
+// my guess is to use an if statement to check 
+// if it is a number
+// parse is used to change a data type to another
+// here it checks if the string can be converted 
+// to an integer
+// is_ok is used on a Result type
+// It doesn't crash the program like unwrap does
+
+if user_input.parse::&lt;i32&gt;().is_ok() {
+    // if result is Ok, roll a random number 
+    // and compare it to the input
+    let secret_number = rng.random_range(1..=100);
+    
+    if user_input == secret_number.to_string() {
+        println!("The number was: {}", secret_number);
+        println!("You guessed the number!");
+        return true;
+    } else {
+        println!("The number was: {}", secret_number);
+        println!("You did not guess the number!");
+        return false;
+    }
+} else {
+    println!("You did not enter a number!");
+    return false;
+}</code></pre>
+
+            <h2>Error Handling in Rust</h2>
+            <p>In this part of the program, I'm handling the user's guess and making sure it's actually a number before
+                doing anything else. In Rust, <code>parse()</code> is used to try and convert a string into another data
+                type, in this case an integer. What helped me understand this is that <code>parse()</code> doesn't just
+                give you the number—it always returns a Result. That result is either Ok if the conversion worked, or
+                Err if it didn't.</p>
+
+            <p>At first, I thought about just using <code>unwrap()</code> to get the number out, but that's only safe if
+                you're really sure nothing can go wrong. In this case, the user could type literally anything, like
+                "cat", and if I used <code>unwrap()</code> the program would just crash. Instead, I used
+                <code>is_ok()</code> to check whether <code>parse()</code> succeeded. This lets me safely see if the
+                input can be turned into an integer without crashing the program.
+            </p>
+
+            <p>If it is a number, I generate a random secret number and compare it to what the user entered. If it
+                matches, the user wins. If not, they lose, but the program still keeps running normally.</p>
+
+            <p>If <code>parse()</code> fails, that means the user didn't enter a number at all, so I print a message
+                telling them that instead of letting the program panic. This part really helped me understand why Rust
+                pushes you to handle errors properly instead of ignoring them. It's more work up front, but it makes the
+                program way more predictable and harder to break.</p>
+
+            <h2>Key Takeaways</h2>
+
+            <h3>Result Types in Rust</h3>
+            <p>In Rust, some functions return a Result value, which is an enumeration (enum). The Result has two
+                variants that are either Ok or Err. Ok means everything is good, Err means something went wrong.</p>
+
+            <h3>References and Mutability</h3>
+            <p>Use <code>&mut</code> when you are giving a function permission to change a variable. The first time it's
+                used, I was changing the empty string to be what the user was entering.</p>
+
+            <h3>Error Handling Methods</h3>
+            <ul>
+                <li><strong>unwrap()</strong> is used to extract the value from an Ok result, but it will panic if the
+                    result is an Err. This means the program will crash. It should only be used when you are completely
+                    sure the result is Ok and when a failure would indicate a bug that should stop the program.</li>
+
+                <li><strong>is_ok()</strong> simply returns true if the result is Ok and false if it's Err. It's useful
+                    when you only care about whether an operation succeeded or failed and you don't actually need the
+                    value inside the result.</li>
+
+                <li><strong>if let Ok(...)</strong> is a more complete way to handle a Result. It checks whether the
+                    result is Ok and, at the same time, gives you access to the value inside it. This is usually the
+                    best choice when you need to use the value if the operation succeeds but still want to handle
+                    failure safely.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Only use <code>&mut</code> if you want to make a change to a value! This exercise really solidified my
+                understanding of Rust's approach to error handling and memory safety. The learning curve is steep, but
+                the guarantees the language provides make it worth the effort.</p>
+        </div>
+
+
+        <footer class="post-footer">
+            <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
+        </footer>
+    </article>
+</body>
+
+</html>

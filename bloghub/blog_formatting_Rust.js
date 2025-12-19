@@ -10,7 +10,7 @@ const posts = [
         title: "Decorators: The Complete Guide",
         preview: "Everything you need to know about Python decorators...",
         date: "Dec 10, 2024",
-        readTime: "8 min read",
+
         link: "post2.html"
     }
 
@@ -30,7 +30,7 @@ posts.forEach(post => {
         <p class="post-preview">${post.preview}</p>
         <div class="post-meta">
             <span>${post.date}</span>
-            <span>${post.readTime}</span>
+            
         </div>
     `;
 
