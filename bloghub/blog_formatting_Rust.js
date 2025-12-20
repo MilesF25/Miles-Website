@@ -1,17 +1,15 @@
 const posts = [
     {
-        title: "Understanding List Comprehensions",
-        preview: "A deep dive into Python's most elegant feature...",
-        date: "Dec 15, 2024",
-        readTime: "5 min read",
-        link: "post1.html"
+        title: "My Rusty Program",
+        preview: "My first Rust program...",
+        date: "Dec 19, 2025",
+        link: "rustblogs/hello_rust.html"
     },
     {
-        title: "Decorators: The Complete Guide",
-        preview: "Everything you need to know about Python decorators...",
-        date: "Dec 10, 2024",
-
-        link: "post2.html"
+        title: "Slices and Structs and Tons of Luck(comingsoon)",
+        preview: "My next step in learing Rust...",
+        date: "Dec 20, 2025",
+        link: "rustblogs/slices_and_structs.html"
     }
 
 ]
