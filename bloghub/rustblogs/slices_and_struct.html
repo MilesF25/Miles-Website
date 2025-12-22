@@ -36,3 +36,279 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Blog Post Container -->
+    <article class="blog-post-container">
+        <!-- Post Header -->
+        <header class="post-header">
+            <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
+            <h1 class="post-title">My Python Brain Is Too Smooth To Handle Rust</h1>
+            <div class="post-info">
+                <span>Dec 20, 2024</span>
+                <span>•</span>
+                <span>10 min read</span>
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <p>This took me a lot longer to figure out. I should probably just change the title to "My Python Brain Is
+                Too Smooth To Handle Rust". My lord, was trying to figure out how to do something as simple as changing
+                a String to an int so complicated. And the biggest issue is that it's not even Rust's fault! I am not a
+                close-minded person by any means, but I was really stuck in my old Python ways here.</p>
+
+            <h2>Starting With Slices</h2>
+            <p>To start, I picked up back where I left off in the Rust book: slices. It's simple and similar to Python
+                slices. The only thing that tripped me up was this example they used to show why you can't change an
+                immutable reference:</p>
+
+            <pre><code>fn main() {
+    let mut s = String::from("hello world");
+
+    let word = first_word(&s);
+
+    s.clear(); // error!
+
+    println!("the first word is: {word}");
+}</code></pre>
+
+            <p>For some reason I was just stuck on trying to figure out why they did this. It was an obvious bug. It
+                took me some time before I read the paragraph below to understand it was on purpose. Aside from that
+                small part, slices were fine for me.</p>
+
+            <h2>Understanding Structs</h2>
+            <p>The next part was structs. Structs in Rust are similar to classes in Python. So again, that was easy for
+                me to understand. The hard part came when I wanted to put the things I learned into practice. This was
+                the journey I had to go through to break my old habit of thinking.</p>
+
+            <p>I thought that making a small program that lets you make a D&D character would be fun. It's simple: have
+                the user give some attributes and then make a struct based off of that. Well it was—the hard part was
+                getting the info.</p>
+
+            <pre><code>struct Character {
+    alive: bool,
+    name: String,
+    age: i32,
+    species: String,
+    // can't have negative kills
+    kills: u32,
+}</code></pre>
+
+            <p>Here is the simple struct I used for the character. Simple and easy to implement. My next step was
+                getting the info from the user.</p>
+
+            <h2>The Age Input Nightmare</h2>
+            <p>Good lord, this was hell. Everything was fine until I had to get the age from the user. My Python brain
+                is so used to just doing something simple like <code>int_number = int("123")</code>. I wish I could do
+                this in Rust—it would make it simple—but because of Rust's rules, I needed to take the long way around.
+                Part of it is my fault. If I had just kept it simple, I could have just used a function that returns a
+                bool and called it a day, but I wanted to get the number back. I had no idea what a journey that would
+                be.</p>
+
+            <pre><code>fn intro() -> (String, i32, String) {
+    println!("Welcome to the DND character builder!");
+    println!("What is your name?");
+
+    let mut name = String::new();
+    io::stdin()
+        .read_line(&mut name)
+        .expect("Failed to read line");
+
+    // this is to remove any whitespace from the string
+    let name = cleanse(name);
+
+    // We declare that `age` will be an i32. It's empty for now.
+    let age: i32 = loop {
+        println!("Please enter your age:");
+
+        // 1. `age_input` is created as a temporary String
+        let mut age_input = String::new();
+        io::stdin()
+            .read_line(&mut age_input)
+            .expect("Failed to read line");
+
+        // 2. We call `.parse()` on the String
+        match age_input.trim().parse::<i32>() {
+            // 3. The `match` checks this new value
+            Ok(num) => {
+                // 4. The pattern `Ok(num)` UNWRAPS the value
+                // The i32 value is extracted and put into 
+                // a BRAND NEW variable called `num`
+
+                // 5. This is the magic. `break num;` does two things:
+                //    a. It breaks the loop
+                //    b. It returns the value of `num` from the loop
+                break num;
+            }
+            Err(_) => {
+                // The parse failed. Print error and loop repeats
+                println!("You did not enter a valid number! Please try again.");
+                continue;
+            }
+        }
+    }; // 6. The `i32` value from the loop is now assigned to `age`
+
+    let mut species = String::new();
+    println!("What is your species?");
+    io::stdin()
+        .read_line(&mut species)
+        .expect("Failed to read line");
+
+    let species = cleanse(species);
+    let struct_values = (name, age, species);
+    (struct_values)
+}</code></pre>
+
+            <h2>The Python to Rust Mental Shift</h2>
+            <p>My first thought was, "Okay, I have the user's input as a String, I just need to change it." I found the
+                <code>.parse()</code> method, which seemed right. So I tried something like:
+            </p>
+
+            <pre><code>let age = age_input.parse::&lt;i32&gt;();</code></pre>
+
+            <p>And bam, my first wall. The compiler started yelling at me. It turns out <code>.parse()</code> doesn't
+                just give you the number. No, that would be too easy. It gives you this thing called a Result. It's a
+                container that's either <code>Ok(the_number)</code> if it worked, or <code>Err(some_error)</code> if the
+                user typed "cat" instead of "25".</p>
+
+            <h3>First Attempt: Just Crash</h3>
+            <p>So my Python brain thought, "Okay, it's like a try...except block, I get it." My first instinct was to
+                just crash the program if it failed. I found <code>.expect()</code>, which seemed perfect for that:</p>
+
+            <pre><code>let age: i32 = age_input.parse().expect("This should have been a number!");</code></pre>
+
+            <p>This worked. If the user makes a typo, my whole character creator just dies. Not great.</p>
+
+            <h3>The Match Statement Revelation</h3>
+            <p>This led me down the rabbit hole of <code>match</code> and <code>if let</code>. I learned that
+                <code>match</code> is Rust's way of forcing you to deal with both possibilities. It's like a helicopter
+                parent saying, "I'm not letting you proceed until you tell me exactly what you'll do if this succeeds
+                AND what you'll do if it fails."
+            </p>
+
+            <p>So I wrote a match block. If the result was <code>Ok(number)</code>, I knew it was a valid number. If it
+                was <code>Err(e)</code>, I'd print an error. I was finally getting somewhere! But then I tried to put it
+                in a loop to keep asking the user until they got it right.</p>
+
+            <h3>Scope Issues</h3>
+            <p>And I hit another wall. A big one. The dreaded "value borrowed here after move" and "not in scope"
+                errors.</p>
+
+            <p>I finally got the match statement working, but I put it all in a loop to keep asking for their age, and
+                the moment the loop finished, my shiny new number vanished. It was a scope issue. The variable I created
+                inside the if check or match block only existed inside those curly braces. The outside world had no idea
+                it ever existed. I was so lost.</p>
+
+            <h3>The Loop Expression Solution</h3>
+            <p>And then I found the real, mind-bending Rust way to do it. The solution that felt weird but incredibly
+                powerful once it clicked: <strong>the loop itself can be an expression. It can return a value.</strong>
+            </p>
+
+            <p>That's what led to my final code. Instead of just <code>break;</code>, you can do
+                <code>break num;</code>. This breaks the loop and flings the value <code>num</code> out of it, where it
+                can be caught and assigned to a variable.
+            </p>
+
+            <h2>Adding Some Fun: Dice Rolling</h2>
+            <p>Once that whole process was over, I decided to have some fun by adding a dice rolling function. Just to
+                make it official and as a way to destress.</p>
+
+            <pre><code>fn dice_roll() {
+    let mut rng = rand::rng();
+    let secret_number = rng.random_range(1..=20);
+    
+    match secret_number {
+        1 => println!(
+            "Oof, looks like you tripped and fell on a pebble 
+            which somehow killed you....
+            Well, looks like your adventure is over 
+            and the bad guys win lol"
+        ),
+        6 => holy_6_7(),
+        7 => holy_7_6(),
+        20 => println!("You saved the day! congrats"),
+        _ => {
+            println!(
+                "well, you got an average roll {}. 
+                So nothing happens, you just live life",
+                secret_number
+            )
+        }
+    }
+}</code></pre>
+
+            <p>I also added some fun "holy 67" functions that give the player a chance to risk it all for a legendary
+                roll combination:</p>
+
+            <pre><code>fn holy_7_6() {
+    println!("Print looks like you got a 7, 
+             want to test your luck and see if you get a 6? 
+             yes or no");
+    
+    let mut answer = String::new();
+    io::stdin()
+        .read_line(&mut answer)
+        .expect("Failed to read line");
+    
+    let clean_name = cleanse(answer);
+    let lower_case = clean_name.to_ascii_lowercase();
+
+    if &lower_case == "yes" {
+        print!("good luck");
+        let mut rng = rand::rng();
+        let secret_number = rng.random_range(1..=20);
+        
+        if secret_number == 6 {
+            println!("You win.....")
+        } else {
+            print!("Shame, no holy 67. game over")
+        }
+    } else {
+        println!("Smart choice, you win");
+    }
+}
+
+fn holy_6_7() {
+    println!("Print looks like you got a 6, 
+             want to test your luck and see if you get a 7? 
+             yes or no");
+    
+    let mut answer = String::new();
+    io::stdin()
+        .read_line(&mut answer)
+        .expect("Failed to read line");
+    
+    let clean_name = cleanse(answer);
+    let lower_case = clean_name.to_ascii_lowercase();
+
+    if &lower_case == "yes" {
+        print!("good luck");
+        let mut rng = rand::rng();
+        let secret_number = rng.random_range(1..=20);
+        
+        if secret_number == 7 {
+            println!("You win.....")
+        } else {
+            print!("Shame, no holy 67. game over")
+        }
+    } else {
+        println!("Smart choice, you win");
+    }
+}</code></pre>
+
+            <h2>Lessons Learned</h2>
+            <p>This project taught me that coming from Python to Rust isn't just about learning new syntax—it's about
+                fundamentally rethinking how you approach problems. Rust forces you to be explicit about error handling,
+                ownership, and lifetimes in ways that Python never does. Adjusting to Rust is a proecss.</p>
+
+
+        </div>
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
+        </footer>
+    </article>
+</body>
+
+</html>
