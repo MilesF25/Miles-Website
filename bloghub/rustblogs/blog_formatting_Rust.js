@@ -6,7 +6,7 @@ const posts = [
         link: "hello_rust.html"
     },
     {
-        title: "Slices and Structs and Tons of Luck(comingsoon)",
+        title: "Slices and Structs",
         preview: "My next step in learing Rust...",
         date: "Dec 20, 2025",
         link: "slices_and_struct.html"

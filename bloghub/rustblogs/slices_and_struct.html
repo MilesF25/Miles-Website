@@ -24,7 +24,7 @@
             <a href="#" class="logo">Miles</a>
             <ul class="nav-links">
                 <li><a href="../../index.html">Home</a></li>
-                <li><a href=".https://github.com/MilesF25" target="_blank">Github</a></li>
+                <li><a href="https://github.com/MilesF25" target="_blank">Github</a></li>
                 <li><a href="../contact.html">Contact</a></li>
                 <li class="dropdown">
                     <span class="dropdown-toggle">Navigation</span>
@@ -182,7 +182,8 @@
             <p>Looking back it is pretty simple but at the time it was didn't make sense to me. How could I get the
                 value from a successful operation in a safe way? To do that I used Ok(). Here is what I did</p>
 
-            <pre><code>match age_input.trim().parse::&lt;i32&gt;() {
+            <pre><code>match age_input.trim().parse::(i32);() {
+                //Had do use () cause html encoding
     Ok(number) => {
         break number
     }
