@@ -10,6 +10,18 @@ const posts = [
         preview: "My next step in learing Rust...",
         date: "Dec 20, 2025",
         link: "slices_and_struct.html"
+    },
+    {
+        title: "My First Rusty Malware",
+        preview: "Trying my hand in malware...",
+        date: "Dec 26, 2025",
+        link: "first_malware3.html"
+    },
+    {
+        title: "Upgrades People, Upgrades!!",
+        preview: "Improving the malware",
+        date: "Dec 27, 2025",
+        link: "upgraded_malware4.html"
     }
 
 ]
