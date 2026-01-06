@@ -26,15 +26,18 @@ const posts = [
     {
         title: "Rust Mp3",
         preview: "Made a mp3 using rust and python",
-        date: "Jan 1/6, 2026",
+        date: "Jan 6, 2026",
         link: "rustymp3.html"
     }
-
-
 ]
 
-// sorts the posts by date (newest first)//
-posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+// sorts the posts by date (newest first)
+posts.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB - dateA;
+});
+
 const container = document.getElementById('posts-container');
 
 posts.forEach(post => {
@@ -47,7 +50,6 @@ posts.forEach(post => {
         <p class="post-preview">${post.preview}</p>
         <div class="post-meta">
             <span>${post.date}</span>
-            
         </div>
     `;
 
