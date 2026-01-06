@@ -26,8 +26,8 @@ const posts = [
     {
         title: "Rust Mp3",
         preview: "Made a mp3 using rust and python",
-        date: "Dec 1/6, 2025",
-        link: ""
+        date: "Dec 1/6, 2026",
+        link: "rustymp3.html"
     }
 
 
