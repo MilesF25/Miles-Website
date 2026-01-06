@@ -22,7 +22,14 @@ const posts = [
         preview: "Improving the malware",
         date: "Dec 27, 2025",
         link: "upgraded_malware4.html"
+    },
+    {
+        title: "Rust Mp3",
+        preview: "Made a mp3 using rust and python",
+        date: "Dec 1/6, 2025",
+        link: ""
     }
+
 
 ]
 
