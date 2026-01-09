@@ -12,7 +12,7 @@ const posts = [
         link: "slices_and_struct.html"
     },
     {
-        title: "My First Rusty Malware",
+        title: "My First Rusty 'Offensive Security Research'",
         preview: "Trying my hand in malware...",
         date: "Dec 26, 2025",
         link: "first_malware3.html"
