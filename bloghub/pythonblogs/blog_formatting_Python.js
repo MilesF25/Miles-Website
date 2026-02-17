@@ -3,7 +3,7 @@ const posts = [
         title: "Banjo",
         preview: "Local Database",
         date: "Feb 16, 2026 (Maybe)",
-        link: "TBD"
+        link: "BanjoDB.html"
     }
 ]
 
