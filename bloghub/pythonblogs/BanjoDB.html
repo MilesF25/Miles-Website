@@ -52,7 +52,40 @@
         <!-- Post Content -->
         <div class="post-content">
             <p>Been playing banjo and kazooie and wanted to name this project after them. Full blog TBD. Thanks to my
-                gaming buddy for providing the banjo image, I had no idea where to find a good banjo pic</p>
+                gaming buddy for providing the banjo image, I had no idea where to find a good banjo pic. Here is the
+                link to the repo: <a href="https://github.com/MilesF25/BanjoDB" target="_blank">BanjoDB on GitHub</a>
+            </p>
+            <p>I was looking over my senior project from college and I was feeling a bit upset. I feel like I didn't
+                have the opprutunity to really do what I
+                origianlly wanted to do. What I put together is being held by hope and ductape. Thats why I wanted to do
+                redo it a bit differently, think of it
+                as a slight remake i did in my free time. The origianl goal of the senior project was to have a secure
+                database that couldn't be accessed by anyone
+                but the person who knew the password. I remember using encryption to encrypt the physical data as it was
+                entered and bit locker to protect the data while
+                it was at rest. The origianl plan was to use quantum resistant algorithms but at the time I did not know
+                enough aboout quantum to implement it and it would've
+                required me updating old python quantum libraries which I did not have the skills to at the time.
+
+                This new project I did is a more simplifed verison of that one but I followed different security
+                practices. I am currently stufying for the
+                security+ cert so I thought that it would be cool to implement some of the things I learned from that
+                into this, like role based access controls, securing files, and logging
+                .As of writing this the program will let you make one admin account and multiple guest accounts. Each
+                account can create a gvim supported file, edit it and save it to the db. The admin account can view,edit
+                and delete all files as well as accounts.
+                The program logs who made the file and when it was last edited.
+                It uses Argon for password hasing so each accounts password is not stored in plain text. The program
+                uses both python and Rust, I did this because trying to make a rust front end is painful, python is a
+                lot eaiser.
+                Basically the two languages pass things back and forth, nothing important is held on the front end, this
+                is to simulate a real environment, everything is done on the back end. Overall this was a fun project,
+                it helped me get a bit more famillar with rust and databases practices and development, If I wanted to
+                improve on this I could add password recovery but that would be for a later time
+
+
+            </p>
+
 
             <!-- Post Footer -->
             <footer class="post-footer">
