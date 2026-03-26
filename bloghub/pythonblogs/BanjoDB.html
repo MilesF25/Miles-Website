@@ -51,40 +51,71 @@
 
         <!-- Post Content -->
         <div class="post-content">
-            <p>Been playing banjo and kazooie and wanted to name this project after them. Full blog TBD. Thanks to my
-                gaming buddy for providing the banjo image, I had no idea where to find a good banjo pic. Here is the
-                link to the repo: <a href="https://github.com/MilesF25/BanjoDB" target="_blank">BanjoDB on GitHub</a>
+            <h2>B.A.N.J.O.</h2>
+            <p><strong>Backend Authenticated Note & Journal Organizer</strong></p>
+
+            <p>
+                I've been playing a lot of Banjo-Kazooie lately and decided to name this project after the duo. Thanks
+                to my gaming buddy
+                for providing the banjo image, You can check out the full repository here:
+                <a href="https://github.com/MilesF25/BanjoDB" target="_blank">BanjoDB on GitHub</a>.
             </p>
-            <p>I was looking over my senior project from college and I was feeling a bit upset. I feel like I didn't
-                have the opprutunity to really do what I
-                origianlly wanted to do. What I put together is being held by hope and ductape. Thats why I wanted to do
-                redo it a bit differently, think of it
-                as a slight remake i did in my free time. The origianl goal of the senior project was to have a secure
-                database that couldn't be accessed by anyone
-                but the person who knew the password. I remember using encryption to encrypt the physical data as it was
-                entered and bit locker to protect the data while
-                it was at rest. The origianl plan was to use quantum resistant algorithms but at the time I did not know
-                enough aboout quantum to implement it and it would've
-                required me updating old python quantum libraries which I did not have the skills to at the time.
 
-                This new project I did is a more simplifed verison of that one but I followed different security
-                practices. I am currently stufying for the
-                security+ cert so I thought that it would be cool to implement some of the things I learned from that
-                into this, like role based access controls, securing files, and logging
-                .As of writing this the program will let you make one admin account and multiple guest accounts. Each
-                account can create a gvim supported file, edit it and save it to the db. The admin account can view,edit
-                and delete all files as well as accounts.
-                The program logs who made the file and when it was last edited.
-                It uses Argon for password hasing so each accounts password is not stored in plain text. The program
-                uses both python and Rust, I did this because trying to make a rust front end is painful, python is a
-                lot eaiser.
-                Basically the two languages pass things back and forth, nothing important is held on the front end, this
-                is to simulate a real environment, everything is done on the back end. Overall this was a fun project,
-                it helped me get a bit more famillar with rust and databases practices and development, If I wanted to
-                improve on this I could add password recovery but that would be for a later time
-
-
+            <h3>The Backstory</h3>
+            <p>
+                Recently, I was looking back at my senior project from college and felt a bit frustrated.
+                At the time, I didn't feel I had the opportunity to truly build what I wanted, looking back, what I
+                put together then was held together by hope and duct tape.
+                I decided to treat this project as a remake, a chance to do it right using the skills I've picked up
+                since graduating.
             </p>
+            <p>
+                The original goal of my senior project was to create a secure database that was inaccessible to anyone
+                without the correct password.
+                I remember using BitLocker for data-at-rest protection and attempting to implement quantum-resistant
+                algorithms.
+                However, I didn't know enough about quantum computing at the time to implement it properly, i was trying
+                to bite off more than i could chew and it would
+                have required updating outdated Python libraries that were beyond my skill level then.
+            </p>
+
+            <h3>The Evolution</h3>
+            <p>
+                This new project is a simplified but much more robust version of that original idea.
+                Since I'm currently studying for my Security+ certification, I wanted to implement the
+                core pillars of modern security:
+                <strong>Role-Based Access Control (RBAC)</strong>, <strong>Secure File Handling</strong>, and
+                <strong>Detailed Logging</strong>.
+            </p>
+
+            <h3>Technical Overview</h3>
+            <ul>
+                <li><strong>The Interface:</strong> I used a Python frontend because, frankly, building a GUI in Rust is
+                    a special kind of pain. Python makes the user interaction seamless and easy.</li>
+                <li><strong>The Secure Core:</strong> The entire backend is built in <strong>Rust</strong>. Python and
+                    Rust pass data back and forth, but nothing sensitive is ever held on the frontend. This simulates a
+                    real-world environment where the client is separated from the secure core.</li>
+                <li><strong>Security Practices:</strong> I used <strong>Argon2</strong> for password hashing, ensuring
+                    no credentials are ever stored in plain text.</li>
+            </ul>
+
+            <h3>Current Features</h3>
+            <ul>
+                <li>Users can create, edit, and save <code>GVim</code>-supported files directly into the database.</li>
+                <li>The system logs ownership and "Last Edited" timestamps for every entry.</li>
+                <li>The Admin account has total oversight, with the power to view, edit, or delete any file or account
+                    in the system.</li>
+                <li>Standard users are restricted to their own "vaults" and cannot access other users' data.</li>
+            </ul>
+
+            <h3>Looking Ahead</h3>
+            <p>
+                Overall, this was a rewarding way to spend my free time. It allowed me to get familiar with Rust/Python
+                integration (via <strong>Maturin</strong>) and put database security practices into actual production.
+                If I continue to iterate on this, I'd love to add a secure password recovery system, but for now, I'm
+                proud of how far this "remake" has come.
+            </p>
+
 
 
             <!-- Post Footer -->
