@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banjo</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Miles</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://github.com/MilesF25" target="_blank">Github</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Navigation</span>
+                    <div class="dropdown-menu">
+                        <a href="../experience_home_page/Personal_Projects.html">Projects</a>
+                        <a href="../assets/Miles.Franck Resume.pdf" download target="_blank">Resume</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Blog Post Container -->
+    <article class="blog-post-container">
+        <!-- Post Header -->
+        <header class="post-header">
+            <a href="pythonhub.html" class="back-link">← Back to Python Blog</a>
+            <h1 class="post-title">Vulns with ai
+                <img src="../../byte wink.png" class="post-pic">
+            </h1>
+            <div class="post-info">
+                <span>4/23/26</span>
+
+            </div>
+        </header>
+
+        <div class="post-content">
+            <h2>AI and Vulns</h2>
+            <p><strong>I was inspired to use AI and Shodan</strong></p>
+
+
+            <p>I've been messing around with ai lately, generating music, using it to help study and do small tasks. But
+                as I was studying for my comptia exam, I became interested in how it can be used in cyber security.
+            </p>
+
+            <h3>The Goal</h3>
+            <p>
+                The goal of this project was to see if I could use ai to help me exploit found vulns. To do that I
+                decided to use Shodan. Shodan is a very good tool for discovering devices and I've used it in the past,
+                I also used ollama and deepseek so I didn't have to worry about api.
+            </p>
+            I liked this project becuase it allowed me to see what the next step would be after finding a potential
+            vuln. I know this doesn't replace the good old fashion method
+            of seraching up a vuln but it does provie a faster way to figure out the next step.
+
+            <h3>The Process</h3>
+            <p>So the flow of this program is basically. Do a shodan scan, get the data from the scan and turn it into a
+                json file, the user gets to pick what devices they want deepseek to analyze and the program will pick
+                the cve with the highest score. I have the user pick the device and I the program pick the the most
+                severe cve from the chosen device.
+                I used deepseek and ollama for
+                this becuase I didn't want to use
+                an ai like gpt or claude becuase I know I'd probably get some issues with their content filters and I
+                didn't want to risk it.
+            </p>
+
+            <h3> My thoughts</h3>
+            <p>This project was a decent one, I was able to get an output I was satsified with but I felt like I could
+                do more under different circumstances. I was pressed for time so I didn't get to flesh things out, I
+                also had an issue with hardware. My laptop is old and running things like ollama and deepseek strain my
+                device. Generating a single response for 1 cve took a bit of time. Also having ollama and deepseek on my
+                device takes up a bit of space. But overall im happy, I got a cool output that shows the possibilty of
+                what ai could do when it comes to pentesting.
+            </p>
+
+            <h3>Future Steps</h3>
+            <p>If I didn't have any restraints I'd improve this by setting up a docker container with things like kali
+                linux and let the ai have its own environment to hack in. Instead of just telling the user what to do
+                next, the ai would actually be able to send commands directly to the container and execute them on its
+                own. So it figures out the next step, runs it, sees the output, and decides where to go from there, kind
+                of like giving it its own terminal to work in. In a fantasy world, i'd also train my own ai to be able
+                to hack. I don't know much about ai and the whole training process but I imagine if I fed it
+                walkthroughs of ctfs and stuff like that it could get pretty good at knowing what to do in different
+                situations.</p>
+            <h3> Drawbacks</h3>
+            <p>The main issue with this project is that the ai will not always give the correct answer, the model used
+                will not be up to date, and I dont have the proper devices to fully explore this idea. First, blindly
+                trusting the ai's answer is a guaranteed way to get yourself into legal trouble, get hacked, or both. If
+                you dont know what you're doing dont try it. Second, deepseek is good but it only knows things up to a
+                certain date, so the found cves might have already been patched or the info about them might be
+                outdated. Lastly, running ollama and deepseek takes up a lot of space on my device, and on top of that
+                my laptop from 2020/2021 takes a while to analyze even just 1 cve. I hate to think how long it would
+                take for 10+. Another thing I'll be honest about is that I still dont fully know what to look for or
+                what to do when it comes to pentesting, so theres a limit to how much I can even evaluate whether the
+                ai's output is actually good or not.</p>
+
+
+
+
+
+
+
+
+
+            <h3>Output example</h3>
+            <pre>
+                {
+    "hosts": [
+        {
+            "ip": "94.16.112.132",
+            "risk": "critical",
+            "primary_vulnerability": "CVE-2019-19271",
+            "next_steps": [
+                {
+                    "phase": "Verification",
+                    "action": "Check for ProFTPD version and response to FTP commands.",
+                    "tool": "nmap",
+                    "command": "nmap -sV --script=ftp-version -p 21 94.16.112.132"
+                },
+                {
+                    "phase": "Exploitation",
+                    "technique": "Command Injection via FTP HELP",
+                    "logic": "Send 'HELP /bin/sh' to trigger remote shell execution.",
+                    "tool": "curl",
+                    "command": "curl -v ftp://94.16.112.132:21 --user anonymous --upload-file /dev/null -x \"HELP /bin/sh\"",
+                    "risk_note": "Exploitation without authorization is illegal; ensure proper permissions."
+                }
+            ]
+        }
+    ]
+}
+            
+            </pre>
