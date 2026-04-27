@@ -2,9 +2,16 @@ const posts = [
     {
         title: "Banjo",
         preview: "Local Database",
-        date: "Feb 16, 2026 (Maybe)",
+        date: "Feb 16, 2026",
         link: "BanjoDB.html"
+    },
+    {
+        title: "AI and Vuln scans ",
+        preview: "Scanner",
+        date: "April 27, 2026",
+        link: "Vuln_scanning_with_ai.html"
     }
+
 ]
 
 // sorts the posts by date (newest first)
