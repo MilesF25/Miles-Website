@@ -10,6 +10,12 @@ const posts = [
         preview: "Scanner",
         date: "April 27, 2026",
         link: "Vuln_scanning_with_ai.html"
+    },
+    {
+        title: "Pattern Finder ",
+        preview: "Finds Red Flasg in Code",
+        date: "June 6, 2026",
+        link: "patternfinder.html"
     }
 
 ]
