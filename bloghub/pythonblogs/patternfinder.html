@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banjo</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Miles</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://github.com/MilesF25" target="_blank">Github</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Navigation</span>
+                    <div class="dropdown-menu">
+                        <a href="../experience_home_page/Personal_Projects.html">Projects</a>
+                        <a href="../assets/MilesFranckResume.pdf" download target="_blank">Resume</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Blog Post Container -->
+    <article class="blog-post-container">
+        <!-- Post Header -->
+        <header class="post-header">
+            <a href="pythonhub.html" class="back-link">← Back to Python Blog</a>
+            <h1 class="post-title">BanjoDB
+                <img src="../../assets/images/banjodbcut.jpg" class="post-pic">
+            </h1>
+            <div class="post-info">
+                <span>Final date TBD [forgot to update but around feburary or march]</span>
+
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <h2>Pattern Finder</h2>
+            <p><strong>A very simple file scanner</strong></p>
+
+            <p>
+                I wanted to try making a tool that can discover red flags in code like hard coded secrets or red flags
+                in coding. Theres not much backstory besides the fact im looking into securtiy and safe coding.
+            </p>
+
+
+            <h3>Flow of the program</h3>
+
+            <p>my program flows like this. You enter a github repo url, the program goes and gets the contents of the
+                selected files, then it passes it on the the pattern finder and it runs through the code looking for any
+                red flags</p>
+
+            <p>Here is an example from my BANJO DB project
+
+                ```
+
+                main.py:
+                [command_execution]
+                'os.system(' at line 287 (pos 11269)
+                'os.system(' at line 290 (pos 11350)
+                [unsafe_code_execution]
+                'eval(' at line 180 (pos 7558)
+                'eval(' at line 182 (pos 7659)
+
+                notes_funcs.py:
+                [command_execution]
+                'subprocess.run(' at line 156 (pos 4619)
+                'subprocess.run(' at line 185 (pos 5942)
+                'subprocess.run(' at line 209 (pos 6843)
+                'subprocess.run(' at line 221 (pos 7481)
+                'subprocess.run(' at line 225 (pos 7661)
+                'subprocess.run(' at line 227 (pos 7742)
+                'subprocess.run(' at line 235 (pos 8107)
+                'subprocess.run(' at line 261 (pos 8968)
+                [unsafe_code_execution]
+                'eval(' at line 15 (pos 239)
+                ```
+
+                My program uses very simple patterns and i expect a lot of false negatives but its still good to see
+                that my program is picking these things up. Good thing my database is just a prototype. But this is
+                really eye
+                opening. You need to always be mindful when you are coding. The more I learn about security the more I
+                am amazed at the security teams at big compaines, making secure tech is hard.
+            </p>
+
+            I've been playing a lot of Banjo-Kazooie lately and decided to name this project after the duo. Thanks
+            to my gaming buddy
+            for providing the banjo image, You can check out the full repository here:
+            <a href="https://github.com/MilesF25/BanjoDB" target="_blank">BanjoDB on GitHub</a>.
