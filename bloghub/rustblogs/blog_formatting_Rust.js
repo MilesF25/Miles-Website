@@ -28,6 +28,13 @@ const posts = [
         preview: "Made a mp3 using rust and python",
         date: "Jan 6, 2026",
         link: "rustymp3.html"
+    },
+    {
+        title: "Wallpaper",
+        preview: "Wallpaper and Mp3 with Tokio",
+        date: "Jun 29, 2026",
+        link: "wallpaper_engine_at_home.html"
+
     }
 ]
 

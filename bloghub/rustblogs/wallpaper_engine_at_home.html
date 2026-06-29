@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miles Franck | Hub</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Miles</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://github.com/MilesF25" target="_blank">Github</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Navigation</span>
+                    <div class="dropdown-menu">
+                        <a href="../experience_home_page/Personal_Projects.html">Projects</a>
+                        <a href="../assets/MilesFranckResume.pdf" download target="_blank">Resume</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Blog Post Container -->
+    <article class="blog-post-container">
+        <!-- Post Header -->
+        <header class="post-header">
+            <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
+            <h1 class="post-title">Wallpaper testing</h1>
+            <div class="post-info">
+                <span>6/29/2026</span>
+
+
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <p>This was just a small project i did to get more practice with Rust. I wanted to try working at a low
+                level and get used to using tokio so just messing with the windows home wallpaper and music seemed like
+                a good start. This program swaps through different wallpapers and plays music in the background
+
+
+                This project wasnt that hard, the only tricky thing was figuring out how to use tokio. The issue I ran
+                into was having one program run and the not the other. The goal using tokio was to have two functions
+                run at the same time so I wasnt s
+
+                the issue was becuase I was using thread::Sleep instead of tokio sleep on line 223 and how i orded the
+                functions in main on line 42 (let _ = tokio::join!(papel_handle, radio_handle);).
+
+                The issue with The original verion had papel_handle first then the radio handle. This caused the
+                wallpaper to swap but then nothing else could happen, the music wouldn't start. It would be like the
+                entire program froze, which is whats supposed to happen becuase I used thread::sleep. Thread::sleep
+                basically pauses the entire program and i had it set for 50 seconds. To fix this I had to use
+                tokio::sleep instead, this basically tells the wallpaper program to pause but still run the other
+                functions in the meantime.</p>
+        </div>
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
+        </footer>
+    </article>
+</body>
+
+</html>
