@@ -35,7 +35,13 @@ const posts = [
         date: "Jun 29, 2026",
         link: "wallpaper_engine_at_home.html"
 
+    }, {
+        title: "AGUMON",
+        preview: "Making a LAN Server",
+        date: "Jul 12, 2026",
+        link: "Server.html"
     }
+
 ]
 
 // sorts the posts by date (newest first)
