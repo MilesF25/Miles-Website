@@ -55,14 +55,9 @@
         <div class="post-content">
             <h2>A.G.U.M.O.N</h2>
             <p><strong>Asynchronous Group User Messaging Over Networks</strong></p>
-            <p>
 
-                So this is a project i made cause im studying for my comptia sec+ exam and i was learning about
-                databases and servers. The more I learn about cyber security I get more intrgiued on the low level
-                things, like what does the code look like that lets firewalls block certain actions. Being a SOC analyst
-                ## Reflection
 
-                I built this project while studying for my CompTIA Security+ exam. As I learned more about databases and
+            <p> I built this project while studying for my CompTIA Security+ exam. As I learned more about databases and
                 servers, I became more interested in the low-level side of cybersecurity. A SOC analyst needs to know
                 how to use things like firewalls, but what really interested me was what the code behind them actually
                 looks like. How does a firewall know what to block? How does a server handle multiple clients? This
@@ -74,23 +69,41 @@
                 multithreading at the same time. There were a lot of moments where I had to stop coding just to
                 understand what was actually happening.
 
-                My original plan was to have one person host the server and stream music to everyone who joined. The
-                first roadblock was that I didn't really think through the structure of the program before I started
-                coding. My first idea was to have the host start the server, run it, and manage everything from one
-                console. That turned into a mess pretty quickly. I got overwhelmed trying to organize the code, so I
-                stepped back and simplified everything. Instead of having a host manage the server, I made the server
-                its own standalone program.
+            </p>
+            <p>
+                This project has 3 main parts, the host file, client file and the chatbot file.
 
-                The next hurdle was audio streaming. I wasn't able to implement it because it ended up being way more
-                complicated than I expected. I still wanted to add something interesting, so I replaced the music
-                feature with an AI chatbot. The chatbot joins the server using its own authentication token, and if
-                someone mentions its name in the chat, it'll respond.
+                The main part, the host file. This file holds the server code. What it does is open port 5000, this is
+                so only devices on the local network can access it. Then it generates a room following the room class i
+                created. The room class has four attributes. Entry code, users, bot token and current number of
+                bots.
 
-                Part of me is still disappointed that I couldn't get the audio streaming working. But for my first
-                networking project, I'm willing to give myself a pass. I learned a lot about networking, concurrency,
-                and planning software before writing code. I also realized how important a good architecture is. I think
-                the rigid structure I started with is what held me back from implementing audio, but now I know what I'd
-                do differently. Hopefully the next time I build something like this, I'll be able to design the server
-                with more flexibility from the start.
-                p>
+                I wanted my server to have some securtiy so I made sure there is a way to control who can join and the
+                amount of people that can join. Same concept for the bots. The main part of the code is the joining
+                process, I used tokio to do asynchronous networking so multiple people can join at once and to make sure
+                there are no issues
+                if two people were to join at the same time i used Arc and Mutex which allows each process to access the
+                same values safely. Lastly there is a validation check, the program can tell the difference between a
+                chatbot and a real user and checks if there is space for them to join.
+
+                The next important part is the client file. It could be argued that this file was just as hard as the
+                host but what makes the host at lot harder is the fact i can't ask chatgpt to make me working server.
+                The client handles the real humans connecting, sending and recieving messages to and from the server.
+                The hard part was getting Ratatui to work. I was never good with ui.
+            </p>
+
+
+            <p>Lastly the chatbot. Originally it was suppsoed to be a music bot but implemnting audio was too complex
+                and even though it was part of the original idea, I did not properly set up my server from the start,
+                trying to add it at the end was just too confusing so I decided not to. The chat bot is a good fall
+                back, once the bot connects it will listen for when some has a question for it, example: "Gemini, how do
+                you make cake" and it will respond.
+            </p>
+
+
+
+
+
+
+
         </div>
