@@ -11,18 +11,7 @@ const posts = [
         date: "Dec 20, 2025",
         link: "slices_and_struct.html"
     },
-    {
-        title: "My First Rusty 'Offensive Security Research'",
-        preview: "Trying my hand in malware...",
-        date: "Dec 26, 2025",
-        link: "first_malware3.html"
-    },
-    {
-        title: "Upgrades People, Upgrades!!",
-        preview: "Improving the malware",
-        date: "Dec 27, 2025",
-        link: "upgraded_malware4.html"
-    },
+
     {
         title: "Rust Mp3",
         preview: "Made a mp3 using rust and python",
@@ -42,6 +31,19 @@ const posts = [
         link: "Server.html"
     }
 
+    //
+    // {
+    //     title: "My First Rusty 'Offensive Security Research'",
+    //     preview: "Trying my hand in malware...",
+    //     date: "Dec 26, 2025",
+    //     link: "first_malware3.html"
+    // },
+    // {
+    //     title: "Upgrades People, Upgrades!!",
+    //     preview: "Improving the malware",
+    //     date: "Dec 27, 2025",
+    //     link: "upgraded_malware4.html"
+    // },
 ]
 
 // sorts the posts by date (newest first)
