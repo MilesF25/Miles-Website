@@ -43,7 +43,7 @@
         <!-- Post Header -->
         <header class="post-header">
             <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
-            <h1 class="post-title">AGUMON, Making a LAN Server
+            <h1 class="post-title">AGUMON
                 <img src="../../assets/images/agu.jpg" class="post-pic">
             </h1>
             <div class="post-info">
@@ -55,55 +55,64 @@
         <div class="post-content">
             <h2>A.G.U.M.O.N</h2>
             <p><strong>Asynchronous Group User Messaging Over Networks</strong></p>
+            <a href="https://github.com/MilesF25/Server">Server Repo</a>
 
 
-            <p> I built this project while studying for my CompTIA Security+ exam. As I learned more about databases and
-                servers, I became more interested in the low-level side of cybersecurity. A SOC analyst needs to know
-                how to use things like firewalls, but what really interested me was what the code behind them actually
-                looks like. How does a firewall know what to block? How does a server handle multiple clients? This
-                project was my attempt at understanding how servers are built and how they actually work.
+            <p>
+                I built this project while studying for my CompTIA Security+ exam. As I learned more about databases and
+                servers, I became more interested in the lower-level side of cybersecurity. A SOC analyst needs to know
+                how to use tools like firewalls, but what really interested me was understanding what the code behind
+                them actually looks like. How does a firewall know what to block? How does a server handle multiple
+                clients? This project was my attempt at understanding how servers are built and how they actually work.
 
-                This project was hard. Diving into network programming with zero experience is not something I'd
-                recommend. It is very different from regular programming, and trying to find resources on building a LAN
-                server from scratch wasn't easy. On top of that, I was learning Rust features like `Arc`, `Mutex`, and
-                multithreading at the same time. There were a lot of moments where I had to stop coding just to
-                understand what was actually happening.
+                This project was hard. Diving into network programming with zero experience is not something I would
+                recommend. It is very different from regular programming, and finding resources on building a LAN server
+                from scratch was not easy. On top of that, I was learning Rust features like `Arc`, `Mutex`, and
+                multithreading at the same time. There were many moments where I had to stop coding just to understand
+                what was actually happening.
 
             </p>
-            <p>
-                This project has 3 main parts, the host file, client file and the chatbot file.
 
-                The main part, the host file. This file holds the server code. What it does is open port 5000, this is
-                so only devices on the local network can access it. Then it generates a room following the room class i
-                created. The room class has four attributes. Entry code, users, bot token and current number of
+            <p>
+                This project has three main parts: the host file, the client file, and the chatbot file.
+
+                The main part is the host file. This file contains the server code. It opens port 5000, which allows
+                only devices on the local network to access it. It then generates a room using the room class I created.
+                The room class contains four attributes: an entry code, users, a bot token, and the current number of
                 bots.
 
-                I wanted my server to have some securtiy so I made sure there is a way to control who can join and the
-                amount of people that can join. Same concept for the bots. The main part of the code is the joining
-                process, I used tokio to do asynchronous networking so multiple people can join at once and to make sure
-                there are no issues
-                if two people were to join at the same time i used Arc and Mutex which allows each process to access the
-                same values safely. Lastly there is a validation check, the program can tell the difference between a
-                chatbot and a real user and checks if there is space for them to join.
+                I wanted my server to have some security features, so I made sure there was a way to control who could
+                join and how many people could connect. The same concept applied to bots. The most important part of the
+                code is the joining process. I used Tokio for asynchronous networking, allowing multiple people to join
+                at the same time. To prevent issues when multiple users tried to join simultaneously, I used `Arc` and
+                `Mutex` to safely share values between processes. Lastly, there is a validation check that allows the
+                program to distinguish between a chatbot and a real user while also checking if there is enough space
+                available.
 
-                The next important part is the client file. It could be argued that this file was just as hard as the
-                host but what makes the host at lot harder is the fact i can't ask chatgpt to make me working server.
-                The client handles the real humans connecting, sending and recieving messages to and from the server.
-                The hard part was getting Ratatui to work. I was never good with ui.
             </p>
 
-
-            <p>Lastly the chatbot. Originally it was suppsoed to be a music bot but implemnting audio was too complex
-                and even though it was part of the original idea, I did not properly set up my server from the start,
-                trying to add it at the end was just too confusing so I decided not to. The chat bot is a good fall
-                back, once the bot connects it will listen for when some has a question for it, example: "Gemini, how do
-                you make cake" and it will respond.
+            <p>
+                The next important part is the client file. It could be argued that this file was just as challenging as
+                the host, but what made the host harder was that I couldn't simply ask ChatGPT to create a working
+                server for me. The client handles real users connecting and sending messages to and from the server. One
+                of the hardest parts was getting Ratatui to work because UI development has never been my strongest
+                area.
             </p>
 
-
-
-
-
+            <p>
+                Overall, I am extremely proud of how this project turned out. It was one of the most challenging
+                projects I have worked on, but it pushed me to learn concepts I had never worked with before. I started
+                this project wanting to understand how servers work, and by the end, I had built something that gave me
+                a much deeper appreciation for networking, cybersecurity, and low-level programming.
+            </p>
 
 
         </div>
+
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <a href="rust-blog.html" class="back-link">← Back to Rust Blog</a>
+        </footer>
+    </article>
+</body>
