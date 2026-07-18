@@ -29,6 +29,11 @@ const posts = [
         preview: "Making a LAN Server",
         date: "Jul 12, 2026",
         link: "Server.html"
+    }, {
+        title: "ORPHEUS",
+        preview: "Bytes To Sound",
+        date: "Jul 18, 2026",
+        link: "orpheus.html"
     }
 
     //

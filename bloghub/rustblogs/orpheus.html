@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Miles</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="https://github.com/MilesF25" target="_blank">Github</a></li>
+                <li><a href="../../contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <span class="dropdown-toggle">Navigation</span>
+                    <div class="dropdown-menu">
+                        <a href="../experience_home_page/Personal_Projects.html">Projects</a>
+                        <a href="../../assets/MilesFranckResume.pdf" download target="_blank">Resume</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Blog Post Container -->
+    <article class="blog-post-container">
+        <!-- Post Header -->
+        <header class="post-header">
+            <a href="rusthub.html" class="back-link">← Back to Rust Blogs</a>
+            <h1 class="post-title">ORPHEUS
+
+            </h1>
+            <div class="post-info">
+                <span>7/13/26</span>
+
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <h1>Output Rendering of Packed Hexadecimal Encoded Unstructured Streams</h1>
+
+
+            <p> The LAN Server project reignited my interest in an old game I used to play. Trying to figure out how to
+                send audio to each client connected to the server took hours, during that time I decided to expand my
+                music playlist. I looked through some songs I had saved years ago and rediscoverd the Brave Frontier
+                soundtrack. Brave Frontier was the first gacha phone game I played when I was young. I loved it, the
+                art, the battle system, and especially the music. Some of the tracks in the game never fail to get my
+                blood pumping while others give off the feeling I arrived in heaven. Hikoshi Hashimoto, he created most
+                of the music in the game, I can not priase his work enough. Sadly, brave frontier discontinued in 2022,
+                it felt like a part of me died, the game released in 2013, it was with me all through middle school and
+                highschool and a little bit into college. But what hurt the most was never getting to hear the music in
+                game again and being able to hear different takes on in game songs (want to fix up), like during
+                christmas, they'd have a christmas version of the town music. Not being able to experience that saddened
+                me, so I did something to satiate my desire for the music. I decided to generate some.
+
+                The LAN Server project reignited my interest in an old game I used to play. Trying to figure out how to
+                send audio to each client connected to the server took hours, and during that time I decided to expand
+                my music playlist. I looked through some songs I had saved years ago and rediscovered the *Brave
+                Frontier* soundtrack.
+
+                *Brave Frontier* was the first gacha mobile game I played when I was younger. I loved everything about
+                it. The art, the battle system, and especially the music. Some of the tracks never fail to get my blood
+                pumping, while others make me feel like I've arrived in heaven. Hikoshi Hashimoto, who composed most of
+                the game's soundtrack, created music that I can't praise enough.
+
+                Sadly, *Brave Frontier* was discontinued in 2022. It felt like a part of me died. The game was released
+                in 2013 and stayed with me throughout middle school, high school, and even a little into college. What
+                hurt the most, though, was knowing I'd never get to hear the music in-game again or experience the
+                different seasonal arrangements of familiar tracks—for example, the Christmas version of the town theme.
+                Losing those little moments saddened me, so I did something to satisfy my desire to hear them again: I
+                decided to generate some.
+
+
+            </p>
+
+
+            <h3>The Process</h3>
+
+
+            <p>PLEASE NOTE: I DO NOT CONDONE USING AI TO COPY SOMEONES WORK AND PROFIT OFF OF IT(change so i dont sound
+                hypocritical)
+                AI will never replace people, it can not replace the passion someone has for creating things, we would
+                not be where we are today without human passion. AI can not and will never take that away. AI is a tool
+                that is to be used responsibly. I am using that tool to bring enjoyment to myself and create something
+                that is dear to me.
+
+                I originally wanted to build my own ai music generation program. I was feeling a bit too excited and
+                thought "why not build it from scratch". I quickly realized that I do not have the resouces to do that.
+                Having to get the data to train the ai would not be ethical and I do not have a strong enough computer
+                to do that. I can't use a pre existing model cause that would still mean having to train it. So the next
+                best option was to turn code into music.
+            </p>
+
+
+            <p>Sonification, the translation of data into non-speech audio. That is basically what I did: turned bytes
+                into sound. I decided to do this in Rust because this is a low-level project, so a low-level language
+                would
+                be fitting. There are three main parts to this project: getting the file from the user, extracting the
+                bytes, and turning the bytes into sound. </p>
+
+            <p>The simple parts are getting the file and extracting the bytes. In the get_file() function, I used the
+                clap crate to handle the input file from the user and then a simple match to handle extracting the bytes
+                from the file. In the read_file_to_bytes() function, I read the file and get the size of the file in
+                bytes, then I iterate through each byte and add it to a list. There probably is a more efficient way
+                of doing this, but this is simple and easy to understand. I did have an issue here due to how Rust
+                handles ownership. Originally, I had something like (let size = file.metadata()?.len();), but I couldn't
+                do
+                this because file was being used by the reader. So anything after it couldn't access it. The great thing
+                about Rust is that there seems to be a function for every situation. It took some time, but I learned
+                about get_ref(). It let me borrow the file variable even though it was being used.
+
+            </p>
+
+
+
+
+
+            <pre><code> get_file() -> (u64, Vec&ltu8&gt) {
+            let args = Cli::parse();
+
+            match File::open(&args.file) {
+            Ok(file) => {
+            println!("Successfully opened {:?}", args.file);
+            // use file, returns list of bytes from file
+            let size_and_list = read_file_to_bytes(file).unwrap();
+            size_and_list
+            }
+            Err(err) => {
+            println!("Failed to open {:?}: {}", args.file, err);
+            //returns empty list since no file was opened
+            (0, Vec::new())
+            }
+            }
+            }
+
+            fn read_file_to_bytes(file: File) -> io::Result<(u64, Vec&ltu8&gt)> {
+                let mut byte_int_list = Vec::new();
+                let reader = BufReader::new(file);
+
+                // gets the ref of the file from reader
+
+                let size = reader.get_ref().metadata()?.len();
+
+                //iterates through reader and puts bytes
+                for byte in reader.bytes() {
+                byte_int_list.push(byte?);
+                }
+
+                Ok((size, byte_int_list))
+                }
+            </code></pre>
+
+
+
+            <p>The final function is turning bytes to sound. It was tricky and hard to understand because I do not have
+                a background in audio, so I had to use AI to help me with that part. Basically, the goal is to turn the
+                byte into a sound. A byte can range from 0-255, so we need a way to turn that into a sound. To do that,
+                we use an equation: f = B + (v x m). F being the frequency in hertz, B is the base frequency offset, v
+                is the byte value, and m is the multiplier. Here is what it would look like with values: f = 200 + (byte
+                x 10). The reason B, the base frequency offset, is set to 200 is because we need to have a good starting
+                sound. If it was zero, then there would just be silence. 200Hz is equivalent to the hum of a
+                refrigerator, a low, deep hum so any speaker will be able to play it. The multiplier, m, is set to 10 so
+                we can spread
+                everything out. The range will be 200Hz-2750Hz. That way, the human ear can clearly distinguish between
+                each sound. If we didn't have this, everything would sound similar.
+
+            </p>
+
+            <p>In order to plot it, I did not know how to plot this, so I googled how to plot sound and found this
+                Reddit
+                post from long ago. You can find it here:
+                <a
+                    href="https://www.reddit.com/r/edmproduction/comments/11flzh/sound_and_sine_waves_the_physics_of_audio/">sound_and_sine_waves_the_physics_of_audio
+
+                </a>
+            </p>
+
+
+            <p>After reading it, I decided sine waves are the best option, but now how do I actually code it?
+                This is
+                where AI is very handy. I gave it some context about what I was doing and where I was currently
+                stuck,
+                and it came up with this. The AI explained that computers can't just draw a smooth, continuous
+                wave;
+                instead, they have to take thousands of tiny snapshots every second, which are called "samples."
+                To
+                make
+                a sound that actually sounds like a clear note, you usually need 44,100 of these samples for
+                every
+                single second of audio. It gave me a formula to calculate the position of the wave for each of
+                those
+                snapshots: sin(2 * PI * freq * time). By plugging my byte-to-frequency math into that formula, I
+                could
+                finally turn those raw numbers into a digital wave that a speaker understands.
+            </p>
+
+            <p>
+            <p>But then, it pointed out a huge problem I hadn't thought of: scale. If I played every single
+                byte in
+                a
+                1MB file for just a tiny fraction of a second, the resulting audio would be nearly three hours
+                long.
+                To
+                fix this, I made a "stride" calculation. Basically, the code looks at the total
+                size
+                of
+                the file and calculates how many bytes it needs to skip so that every file, no matter how
+                big
+                it
+                is, results in a nice, 60-second or less "audio fingerprint." I also learned about a "windowing"
+                feature,
+                which
+                is like a quick volume fade-in and fade-out for every byte. This stops the speakers from making
+                a
+                loud
+                popping sound when the frequency jumps.
+
+            </p>
+
+            <h3>The Outcome</h3>
+
+            <p>So here is how it sounded when I put in a Python file I had ChatGPT generate. The file had 144
+                lines.
+            </p>
+            <audio controls>
+                <source src="../../assets/audio/sonified_analysis.wav" type="audio/wav">
+            </audio>
+
+            <p>It sounds very computer-like. But after hearing this, I thought of something: what can this sound tell us
+                about the code? This is speculation, but I imagine that encrypted files would sound even more messy,
+                since everything is randomized. It would have to sound like a complete mess, right? And what about
+                different coding languages? How would they sound? Sound hashes? Do good coding practices make the code
+                sound better? There are lots of cool ideas I will definitely explore with this project.</p>
+
+            <p>This was a fun way for me to tie computer science, art, and cybersecurity together. Even though I didn't
+                really touch on cybersecurity, it made me excited for future project ideas. My next goal is to see what
+                I can do with this sound. Maybe AI can make a song out of it.</p>
+
+
+
+
+
+
+
+
+
+
+            <!-- Post Footer -->
+            <footer class="post-footer">
+                <a href="rusthub.html" class="back-link">← Back to Rust Blogs</a>
+            </footer>
+    </article>
+</body>
+
+</html>

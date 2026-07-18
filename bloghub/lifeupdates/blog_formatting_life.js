@@ -1,8 +1,8 @@
 const posts = [
     {
-        title: "Coming Soon",
+        title: "Growth And Ongoing Mastery Of Now",
         preview: "Huge Project update",
-        date: "tbd",
+        date: "7/13/2026",
         link: "the_big_one.html"
     },
 
