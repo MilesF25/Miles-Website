@@ -180,9 +180,8 @@
 
             </p>
 
-            <p>In order to plot it, I did not know how to plot this, so I googled how to plot sound and found this
-                Reddit
-                post from long ago. You can find it here:
+            <p>Once I had the frequencies, I had to figure out how to actually generate the audio waves. I found a great
+                Reddit post that explained the physics of sine waves. You can find it here:
                 <a
                     href="https://www.reddit.com/r/edmproduction/comments/11flzh/sound_and_sine_waves_the_physics_of_audio/">sound_and_sine_waves_the_physics_of_audio
 
@@ -221,7 +220,9 @@
                 the file and calculates how many bytes it needs to skip so that every file, no matter how
                 big
                 it
-                is, results in a nice, 60-second or less "audio fingerprint." I also learned about a "windowing"
+                is, results in a nice, 60-second or less "audio fingerprint." There could be a better way to implement
+                this, I realize that even if two files are similar size, skipping over the chunks will make them sound
+                very different. I also learned about a "windowing"
                 feature,
                 which
                 is like a quick volume fade-in and fade-out for every byte. This stops the speakers from making
@@ -233,8 +234,7 @@
 
             <h3>The Outcome</h3>
 
-            <p>So here is how it sounded when I put in a Python file I had ChatGPT generate. The file had 144
-                lines.
+            <p>So here is how it sounded when I put in a Python file I had ChatGPT generate,
             </p>
             <audio controls>
                 <source src="../../assets/audio/sonified_analysis.wav" type="audio/wav">
