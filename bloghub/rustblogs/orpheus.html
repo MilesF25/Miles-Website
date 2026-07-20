@@ -60,7 +60,7 @@
                 soundtrack. Brave Frontier was the first gacha phone game I played when I was young. I loved it, the
                 art, the battle system, and especially the music. Some of the tracks in the game never fail to get my
                 blood pumping while others give off the feeling I arrived in heaven. Hikoshi Hashimoto, he created most
-                of the music in the game, I can not priase his work enough. Sadly, brave frontier discontinued in 2022,
+                of the music in the game, I can not praise his work enough. Sadly, brave frontier discontinued in 2022,
                 it felt like a part of me died, the game released in 2013, it was with me all through middle school and
                 highschool and a little bit into college. But what hurt the most was never getting to hear the music in
                 game again and being able to hear different takes on in game songs (want to fix up), like during
@@ -99,7 +99,7 @@
                 that is dear to me.
 
                 I originally wanted to build my own ai music generation program. I was feeling a bit too excited and
-                thought "why not build it from scratch". I quickly realized that I do not have the resouces to do that.
+                thought "why not build it from scratch". I quickly realized that I do not have the resources to do that.
                 Having to get the data to train the ai would not be ethical and I do not have a strong enough computer
                 to do that. I can't use a pre existing model cause that would still mean having to train it. So the next
                 best option was to turn code into music.
@@ -119,7 +119,8 @@
                 of doing this, but this is simple and easy to understand. I did have an issue here due to how Rust
                 handles ownership. Originally, I had something like (let size = file.metadata()?.len();), but I couldn't
                 do
-                this because file was being used by the reader. So anything after it couldn't access it. The great thing
+                this because the file was being used by the reader. So anything after it couldn't access it. The great
+                thing
                 about Rust is that there seems to be a function for every situation. It took some time, but I learned
                 about get_ref(). It let me borrow the file variable even though it was being used.
 
@@ -241,7 +242,7 @@
                 <source src="../../assets/audio/sonified_analysis.wav" type="audio/wav">
             </audio>
 
-            <p>It sounds very computer-like. I feel like the stride equation coud be changed,again I did that to keep
+            <p>It sounds very computer-like. I feel like the stride equation could be changed,again I did that to keep
                 the files small but I feel like there could be improvements, but overall I'm happy. I did have some
                 interesting thoughts after hearing this. What can this sound tell us
                 about the code? This is speculation, but I imagine that encrypted files would sound even more messy,
