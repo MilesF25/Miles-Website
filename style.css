@@ -1232,3 +1232,35 @@ main {
         font-size: 1.3rem;
     }
 }
+
+
+/* reminder for me, this works as long as its in the post content part*/
+
+/* Blog Images */
+.post-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Optional: larger images */
+.post-content img.large {
+    width: 100%;
+}
+
+/* Optional: image captions */
+.post-content figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.post-content figcaption {
+    margin-top: 0.75rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+    font-style: italic;
+}
