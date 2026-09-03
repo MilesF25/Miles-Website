@@ -16,7 +16,14 @@ const posts = [
         preview: "Finds Red Flasg in Code",
         date: "June 6, 2026",
         link: "patternfinder.html"
+    },
+    {
+        title: "Code To Image ",
+        preview: "Make a picture out of your code",
+        date: "September 3, 2026",
+        link: "nanaki.html"
     }
+
 
 ]
 
