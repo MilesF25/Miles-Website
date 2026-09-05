@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miles Franck | Skills & Certifications</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <!-- Floating bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Navigation -->
+    <div id="navbar"></div>
+
+    <!-- Skills & Certifications Container -->
+    <div class="skills-container">
+
+        <div class="glass-card resumes-section">
+            <h2>Resumes</h2>
+
+            <div class="resume-item">
+
+                <div class="resume-details">
+                    <a href="/assets/resumes/Software_Engineering_Resume.pdf" target="_blank">
+                        <h3>📄 Software Engineering Resume</h3>
+
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="resume-details">
+                <a href="/assets/resumes/Cybersecurity_Resume.pdf" target="_blank">
+                    <h3>📄 Cyber Security Resume</h3>
+
+                </a>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+    <script>
+        fetch("/navbar.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Navbar request failed: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+
+</html>
