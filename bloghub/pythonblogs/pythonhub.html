@@ -19,23 +19,7 @@
     <div class="bubble"></div>
 
 
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">Miles</a>
-            <ul class="nav-links">
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="https://github.com/MilesF25" target="_blank">Github</a></li>
-                <li><a href="../../contact.html">Contact</a></li>
-                <li class="dropdown">
-                    <span class="dropdown-toggle">Navigation</span>
-                    <div class="dropdown-menu">
-                        <a href="../bloghub/maingub.html">Projects</a>
-                        <a href="../../assets/MilesFranckResume.pdf" download target="_blank">Resume</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div id="navbar"></div>
 
 
 
@@ -53,4 +37,17 @@
 
 
     <script src="blog_formatting_Python.js"></script>
+    <script>
+        fetch("/navbar.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Navbar request failed: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+            })
+            .catch(error => console.error(error));
+    </script>
 </body>
