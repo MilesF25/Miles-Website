@@ -18,11 +18,29 @@ body {
 } */
 
 /*SUMMER THEME*/
-body {
+/* body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
     background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #06b6d4 100%);
+    min-height: 100vh;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+} */
+
+/* AUTUMN THEME */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background: linear-gradient(135deg,
+            #7c2d12 0%,
+            #c2410c 45%,
+            #d97706 100%);
     min-height: 100vh;
     color: white;
 }
